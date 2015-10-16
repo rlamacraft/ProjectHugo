@@ -43,6 +43,10 @@ def bri_converter(percentage):
 # SCHEDULES
 ####################
 
+def get_all_schedules(domain, username):
+    url = "schedules"
+    return get_request(domain, username, url)
+
 
 def create_schedule(domain, username, name, desc, group, action, when):
     url = "schedules"

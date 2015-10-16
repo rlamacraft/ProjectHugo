@@ -2,14 +2,14 @@ __author__ = 'Robert'
 
 from utils import create_schedule
 from utils import delete_schedule
-from hue_requests import get_request
+from utils import get_all_schedules
 from config import username
 from config import domain
 import json
 
 
 def delete_all_hugo_alarms():
-    all_existing_schedules = json.loads(get_request(domain, username, "schedules"))
+    all_existing_schedules = json.loads(get_all_schedules(domain, username))
     for each_key, each_alarms in all_existing_schedules.items():
         if each_alarms['description'].startswith('Hugo:'):
             print(" - Deleting existing Hugo schedule: '" + each_alarms['name'] + "'")
