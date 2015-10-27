@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+  <title>Hugo Hub</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <link href="http://fonts.googleapis.com/css?family=Roboto:300,500,700" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="header">
+          <!-- <div class="container"> -->
+            <div class="row">
+              <div class="col-xs-12">
+                <h1>Hugo Hub</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <ul class="nav nav-pills nav-justified">
+                  <li role="presentation" class="tab active"><a id="scenes-tab" data-tab="scenes" href="#">Scenes</a></li>
+                  <li role="presentation" class="tab"><a id="alarms-tab" data-tab="alarms" href="#">Alarms</a></li>
+                </ul>
+              </div>
+            </div>
+          <!-- </div> -->
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="scenes">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="list-pane">
+              <div class="row">
+                <div class="col-xs-12">
+                    <div class="list">
+                      <ul id="scene-list">
+                        <li class="scene">
+                          <div class="splot" style="background-color:red"></div>
+                          <h3>Morning Orange</h3>
+                        </li>
+                        <li class="scene">
+                          <div class="splot" style="background-color:blue"></div>
+                          <h3>Morning Blue</h3>
+                        </li>
+                        <li class="scene">
+                          <div class="splot" style="background-color:orange"></div>
+                          <h3>Evening Orange</h3>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="alarms">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="list-pane">
+            <div class="row">
+              <div class="col-xs-12">
+                  <div class="list">
+                    <ul>
+                      <li class="scene">
+                        <div class="splot" style="background-color:red"></div>
+                        <h3>Morning Alarm</h3>
+                      </li>
+                      <li class="scene">
+                        <div class="splot" style="background-color:blue"></div>
+                        <h3>Shower Blue</h3>
+                      </li>
+                      <li class="scene">
+                        <div class="splot" style="background-color:orange"></div>
+                        <h3>Evening Orange</h3>
+                      </li>
+                    </ul>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="FAB">
+    <span class="fa fa-lightbulb-o"></span>
+  </div>
+
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/non-hue-script.js"></script>
+  <script type="text/javascript" src="js/hue-script.js"></script>
+</body>
+
+</html>

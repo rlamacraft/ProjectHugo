@@ -1,0 +1,129 @@
+html,
+body {
+  width: 100%;
+  background-color: #f5f7f7;
+  margin: 0;
+  overflow-x: hidden;
+}
+.container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.header {
+  background-color: #3caa9c;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.header h1 {
+  color: #f5f7f7;
+  font-weight: 300;
+  margin: 0;
+  padding: 10px;
+  font-size: 2em;
+  font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
+}
+.nav-justified > li {
+  display: table-cell;
+  width: 1%;
+}
+.nav-justified > li > a {
+  margin: 0;
+}
+.nav-pills > li > a {
+  border-radius: 0;
+  color: #dee5e5;
+  font-weight: 300;
+  font-size: 1.5em;
+  border-bottom: 6px solid transparent;
+  transition: all .5s ease;
+  font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
+}
+.nav-pills > li > a:hover,
+.nav-pills > li > a:focus {
+  background-color: transparent;
+  color: #eff2f2;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+  background-color: transparent;
+  border-bottom-color: #f5f7f7;
+}
+.list-pane {
+  height: 100%;
+  margin: 10px;
+}
+.list-pane .list ul {
+  padding: 0;
+  margin: 0;
+}
+li.scene {
+  list-style: none;
+  height: 60px;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  li.scene {
+    padding: 0;
+    height: 80px;
+    padding: 10px;
+    margin: 0px 25px 0px 10px;
+  }
+}
+li.scene + li.scene {
+  border-top: 1px solid #ccc;
+}
+li.scene .splot {
+  border-radius: 25%;
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  margin: 10px;
+  opacity: 0.6;
+}
+li.scene h3 {
+  font-weight: 300;
+  display: inline-block;
+  margin: 15px 10px;
+  vertical-align: top;
+  font-size: 1.5em;
+  color: #777777;
+  font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
+}
+section {
+  transition: all .5s ease;
+}
+#alarms {
+  opacity: 0;
+  display: none;
+}
+#FAB {
+  position: fixed;
+  bottom: 37px;
+  right: 37px;
+  width: 63px;
+  height: 63px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px #ccc;
+  background-color: #3caa9c;
+  color: #f5f7f7;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  #FAB {
+    bottom: 75px;
+    right: 75px;
+    width: 70px;
+    height: 70px;
+  }
+}
+#FAB span {
+  font-size: 2.7em;
+  text-align: center;
+  width: 100%;
+  display: block;
+  color: inherit;
+  padding-top: 12px;
+}

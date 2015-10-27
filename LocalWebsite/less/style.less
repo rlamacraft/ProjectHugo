@@ -1,0 +1,147 @@
+// out: ../css/style.css
+
+@import "variables.less";
+
+html, body {
+  width: 100%;
+  background-color: @colour-base;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+  background-color: @colour-accent;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.header h1 {
+  color: @colour-base;
+  font-weight: @font-weight-header;
+  margin: 0;
+  padding: 10px;
+  font-size: 2em;
+  font-family: @font-family;
+}
+
+.nav-justified>li {
+  display: table-cell;
+  width: 1%;
+}
+
+.nav-justified>li>a {
+  margin: 0;
+}
+
+.nav-pills>li>a {
+    border-radius: 0;
+    color: @colour-tab-darken;
+    font-weight: 300;
+    font-size: 1.5em;
+    border-bottom: 6px solid transparent;
+    transition: all .5s ease;
+    font-family: @font-family;
+}
+
+.nav-pills>li>a:hover, .nav-pills>li>a:focus {
+  background-color: transparent;
+  color: @colour-tab-darken-hover;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  background-color: transparent;
+  border-bottom-color: @colour-base;
+}
+
+.list-pane {
+  height: 100%;
+  margin: 10px;
+}
+
+.list-pane .list ul {
+  padding: 0;
+  margin: 0;
+}
+
+li.scene {
+
+  list-style: none;
+  height: 60px;
+
+  overflow: hidden;
+
+  @media(min-width: 768px) {
+    padding: 0;
+    height: 80px;
+    padding: 10px;
+    margin: 0px 25px 0px 10px;
+  }
+}
+
+li.scene + li.scene {
+  border-top: 1px solid #ccc;
+}
+
+li.scene .splot {
+  border-radius: 25%;
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  margin: 10px;
+  opacity: 0.6;
+}
+
+li.scene h3 {
+  font-weight: @font-weight-header;
+  display: inline-block;
+  margin: 15px 10px;
+  vertical-align: top;
+  font-size: 1.5em;
+  color: @colour-font;
+  font-family: @font-family;
+}
+
+section {
+  transition: all .5s ease;
+}
+
+#alarms {
+  opacity: 0;
+  display: none;
+}
+
+#FAB {
+  position: fixed;
+  bottom: @fab-small-pos;
+  right: @fab-small-pos;
+  width: @fab-small-size;
+  height: @fab-small-size;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px #ccc;
+  background-color: @colour-accent;
+  color: @colour-base;
+  cursor: pointer;
+
+  @media(min-width:768px) {
+    bottom: @fab-large-pos;
+    right: @fab-large-pos;
+    width: @fab-large-size;
+    height: @fab-large-size;
+  }
+
+  span {
+    font-size: 2.7em;
+    text-align: center;
+    width: 100%;
+    display: block;
+    color: inherit;
+    padding-top: 12px;
+  }
+}
