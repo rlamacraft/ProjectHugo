@@ -12,6 +12,8 @@ $(document).ready( function() {
    console.log("Loaded Hue Utils");
    other_init()
  });
+
+ $('.scene').click(setScene);
 });
 
 function getConfigData() {
@@ -44,8 +46,10 @@ function other_init() {
       updateFabButton(fabState);
   });
 
+  setSplotColours();
+
   //get all scenes
-  get_all_scenes(url, username, function(data) {
+  /*get_all_scenes(url, username, function(data) {
     console.log(data);
     $.each(data, function(index, value) {
       console.log(value);
@@ -54,7 +58,7 @@ function other_init() {
       newSceneHTML = '<li class="scene"><div class="splot" style="background-color:blue"></div><h3>' + value.name + '</h3></li>'
       $('#scene-list').append(newSceneHTML);
     })
-  })
+  })*/
 }
 
 function updateFabButton(state) {
@@ -63,4 +67,23 @@ function updateFabButton(state) {
   } else {
     $('#FAB').css('background-color', '#3CAA9C').css('color', '#F5F7F7');
   }
+}
+
+function setScene() {
+  tappedScene = $(this);
+  hue = tappedScene.data('hue');
+  sat = tappedScene.data('sat');
+  bri = tappedScene.data('bri');
+  setColor(url, username, defaultLight, hue, sat, bri);
+}
+
+function setSplotColours() {
+  allSplots = $('.splot');
+  allSplots.each(function(eachSplot) {
+    eachScene = $($(this).parent());
+    hue = Math.round(HueToHSL(eachScene.data('hue'), 'hue'));
+    sat = Math.round(HueToHSL(eachScene.data('sat'), 'sat'));
+    bri = Math.round(HueToHSL(eachScene.data('bri'), 'bri'));
+    $(this).css("background-color", "hsl(" + hue + "," + sat + "%," + bri + "%)");
+  });
 }

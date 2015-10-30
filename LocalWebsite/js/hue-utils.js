@@ -1,5 +1,12 @@
 function turnOnLamp(domain, username, lampNum) { //TODO: Add colour support
-  put_request(domain, username, "lights/" + lampNum + "/state", '{"on": true}' )
+  put_request(domain, username, "lights/" + lampNum + "/state", '{"on": true}' );
+  updateFabButton(true);
+}
+
+function setColor(domain, username, lampNum, hue, sat, bri) {
+  json = '{"on": true, "hue": ' + hue + ', "sat": ' + sat + ', "bri": ' + bri + '}';
+  console.log(json);
+  put_request(domain, username, "lights/" + lampNum + "/state", json );
   updateFabButton(true);
 }
 
@@ -51,4 +58,20 @@ function get_lamp_status(domain, username, lightNum, success) {
 function get_all_scenes(domain, username, success) {
   get_scenes_url = "scenes";
   return(get_request(domain, username, get_scenes_url, success))
+}
+
+function HueToHSL(value, component) {
+  if(component == "hue") {
+    return(value/(265*265)*360)
+  } else {
+    return(value/265*100)
+  }
+}
+
+function HSLToHue(value, component) {
+  if(component == "hue") {
+    return(value/360*(265*265))
+  } else {
+    return(value/100*265)
+  }
 }
