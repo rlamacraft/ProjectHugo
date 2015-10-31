@@ -70,7 +70,7 @@ html, body {
   margin: 0;
 }
 
-li.scene {
+li.scene, li.alarm {
 
   list-style: none;
   height: 60px;
@@ -85,11 +85,19 @@ li.scene {
   }
 }
 
-li.scene + li.scene {
+li.scene {
+  cursor: pointer;
+}
+
+li.alarm .labels {
+  display: inline-block;
+}
+
+li.scene + li.scene, li.alarm + li.alarm {
   border-top: 1px solid #ccc;
 }
 
-li.scene .splot {
+li.scene .splot, li.alarm .splot {
   border-radius: 25%;
   width: 35px;
   height: 35px;
@@ -99,13 +107,47 @@ li.scene .splot {
   box-shadow: 0px -20px 20px rgba(10,10,10,0.05) inset;
 }
 
-li.scene h3 {
-  font-weight: @font-weight-header;
+li.scene .labels, li.alarm .labels {
   display: inline-block;
-  margin: 15px 10px;
+  vertical-align: top;
+  margin-top: 10px;
+}
+
+li.scene h3, li.alarm h3 {
+  font-weight: @font-weight-header;
+  display: block;
+  margin: 0px 10px;
   vertical-align: top;
   font-size: 1.5em;
-  color: @colour-font;
+  color: @colour-font-primary;
+  font-family: @font-family;
+}
+
+li.scene h3 {
+  margin-top: 7px;
+}
+
+li.scene button {
+  background: none;
+  padding: 0;
+  border: none;
+  cursor: default;
+  border-left: 2px solid #f5f7f7;
+  transition: all .5s ease;
+}
+
+li.scene button:active, li.scene button:focus {
+  outline: none;
+  border-left: 2px solid #3caa9c;
+}
+
+li.alarm h5 {
+  font-weight: @font-weight-subheading;
+  display: block;
+  margin: 0 10px;
+  vertical-align: top;
+  font-size: 1em;
+  color: @colour-font-secondary;
   font-family: @font-family;
 }
 

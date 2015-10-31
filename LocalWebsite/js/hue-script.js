@@ -47,18 +47,7 @@ function other_init() {
   });
 
   setSplotColours();
-
-  //get all scenes
-  /*get_all_scenes(url, username, function(data) {
-    console.log(data);
-    $.each(data, function(index, value) {
-      console.log(value);
-      hue = value.hue;
-      console.log(hue);
-      newSceneHTML = '<li class="scene"><div class="splot" style="background-color:blue"></div><h3>' + value.name + '</h3></li>'
-      $('#scene-list').append(newSceneHTML);
-    })
-  })*/
+  getAllAlarms();
 }
 
 function updateFabButton(state) {
@@ -80,10 +69,42 @@ function setScene() {
 function setSplotColours() {
   allSplots = $('.splot');
   allSplots.each(function(eachSplot) {
-    eachScene = $($(this).parent());
+    eachScene = $($(this).parent().parent());
     hue = Math.round(HueToHSL(eachScene.data('hue'), 'hue'));
     sat = Math.round(HueToHSL(eachScene.data('sat'), 'sat'));
     bri = Math.round(HueToHSL(eachScene.data('bri'), 'bri'));
     $(this).css("background-color", "hsl(" + hue + "," + sat + "%," + bri + "%)");
   });
+}
+
+function getAllAlarms() {
+  get_request(url, username, "schedules", renderAllAlarms);
+}
+
+function renderAllAlarms(data) {
+  for (var key in data) {
+    if (data.hasOwnProperty(key)) {
+      colours = data[key].command.body;
+      if(colours.on === false) {
+        hue = "0";
+        sat = "100";
+        bri = "0";
+      } else {
+        hue = colours.hue;
+        sat = colours.sat;
+        bri = colours.bri;
+        hue = Math.round(HueToHSL(colours.hue, 'hue'));
+        sat = Math.round(HueToHSL(colours.sat, 'sat'));
+        bri = Math.round(HueToHSL(colours.bri, 'bri'));
+      }
+      splotColour = 'hsl(' + hue + ',' + sat + '%,' + bri + '%)';
+      splot = '<div class="splot" style="background-color:' + splotColour + '"></div>';
+      nameLabel = '<h3>' + data[key].name + '</h3>';
+      timeLabel = '<h5>' + data[key].time + '</h5>';
+      labels = '<div class="labels">' + nameLabel + timeLabel + '</div>';
+
+      $('#alarms-list').append('<li class="alarm" title="' + data[key].description + '">' + splot + labels + '</li>');
+      console.log(data[key]);
+    }
+  }
 }
