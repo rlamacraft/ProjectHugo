@@ -90,9 +90,6 @@ function renderAllAlarms(data) {
         sat = "100";
         bri = "0";
       } else {
-        hue = colours.hue;
-        sat = colours.sat;
-        bri = colours.bri;
         hue = Math.round(HueToHSL(colours.hue, 'hue'));
         sat = Math.round(HueToHSL(colours.sat, 'sat'));
         bri = Math.round(HueToHSL(colours.bri, 'bri'));
