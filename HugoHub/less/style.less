@@ -98,7 +98,7 @@ li.edit  + li.edit {
 li.scene .splot,
 li.alarm .splot,
 li.edit  .splot {
-  border-radius: 42%;
+  border-radius: 40%;
   width: @size-splot;
   height: @size-splot;
   display: inline-block;
@@ -215,53 +215,45 @@ section {
 
 #edit-state-pane .input-group {
   margin: 10px;
-  width: 97%;
+  width: 95%;
+}
+
+.sliderHandle() {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background: @colour-accent;
+  cursor: pointer;
+  .transition();
+  border: none;
+  outline: none;
+
+  &:hover {
+    background: @colour-accent;
+  }
 }
 
 #edit-state-pane .input-group input.edit-slider {
-    -webkit-appearance: none;
-    height: 10px;
-    background-color: @colour-font-primary;
-    outline: none;
+  -webkit-appearance: none;
+  height: 3px;
+  background-color: @colour-font-primary;
+  outline: none;
 
-    // Slider Handle
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 5px;
-      background: @colour-accent;
-      cursor: pointer;
-      .transition();
-      border: none;
-      outline: none;
-
-      &:hover {
-        background: @colour-accent;
-      }
-    }
-
-    &:active::-webkit-slider-thumb {
-      background: @colour-accent;
-    }
-
-    &::-moz-range-thumb {
-      width:20px;
-      height: 20px;
-      border: 0;
-      border-radius: 50%;
-      background: @colour-accent;
-      cursor: pointer;
-      .transition();
-      border: none;
-      outline: none;
-
-      &:hover {
-        background: @colour-accent;
-      }
-    }
-
-    &:active::-moz-range-thumb {
-      background: @colour-accent;
-    }
+  // Slider Handle
+  &::-webkit-slider-thumb {
+    .sliderHandle();
   }
+
+  &::-moz-range-thumb {
+    .sliderHandle();
+  }
+
+  &:active::-webkit-slider-thumb {
+    background: @colour-accent;
+  }
+
+  &:active::-moz-range-thumb {
+    background: @colour-accent;
+  }
+}
