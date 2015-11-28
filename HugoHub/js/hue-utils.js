@@ -1,11 +1,10 @@
-function turnOnLamp(domain, username, lampNum) { //TODO: Add colour support
+function turnOnLamp(domain, username, lampNum) {
   put_request(domain, username, "lights/" + lampNum + "/state", '{"on": true}' );
   updateFabButton(true);
 }
 
 function setColor(domain, username, lampNum, hue, sat, bri) {
   json = '{"on": true, "hue": ' + hue + ', "sat": ' + sat + ', "bri": ' + bri + '}';
-  console.log(json);
   put_request(domain, username, "lights/" + lampNum + "/state", json );
   updateFabButton(true);
 }

@@ -36,7 +36,6 @@ function FabClick() {
     turnOnLamp(url, username, defaultLight);
   }
   fabState = !fabState;
-  console.log(fabState);
 }
 
 function other_init() {
@@ -101,7 +100,22 @@ function renderAllAlarms(data) {
       labels = '<div class="labels">' + nameLabel + timeLabel + '</div>';
 
       $('#alarms-list').append('<li class="alarm" title="' + data[key].description + '">' + splot + labels + '</li>');
-      console.log(data[key]);
     }
   }
+}
+
+function correctSliders() {
+    get_request(url, username, "lights/" + defaultLight + "/", function( light ) {
+    $('#hue-slider').attr("value", light.state.hue);
+    $('#sat-slider').attr("value", light.state.sat);
+    $('#bri-slider').attr("value", light.state.bri);
+    updatePreview(light.state.hue, light.state.sat, light.state.bri);
+  })
+}
+
+function saveEdits() {
+  var hue = $('#hue-slider').val();
+  var sat = $('#sat-slider').attr('value');
+  var bri = $('#bri-slider').attr('value');
+  setColor(url, username, defaultLight, hue, sat, bri);
 }

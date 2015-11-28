@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 
 <html>
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
-  <title>Hugo Hub</title>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+<title>Hugo Hub</title>
 
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -38,8 +38,11 @@
         <div class="header">
           <!-- <div class="container"> -->
             <div class="row">
-              <div class="col-xs-12">
+              <div class="col-xs-11">
                 <h1>Hugo Hub</h1>
+              </div>
+              <div class="col-xs-1">
+                <h1><span id="edit-icon" class="fa fa-pencil pull-right"></span></h1>
               </div>
             </div>
             <div class="row">
@@ -135,14 +138,68 @@
     </div>
   </section>
 
+  <div id="edit-state-pane" class="container-fluid">
+    <div class="row">
+      <div class="col-xs-16">
+        <div class="header">
+          <div class="row">
+            <div class="col-xs-9">
+              <h1>State Editor</h1>
+            </div>
+            <div class="col-xs-3">
+              <h1>
+                <span id="edit-state-close" class="fa fa-times pull-right"></span>
+                <span id="edit-state-save" class="fa fa-check pull-right"></span>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <ul>
+          <li class="edit">
+            <div class="labels">
+              <h3>Hue</h3>
+            </div>
+            <div class="input-group">
+              <input class="edit-slider" type="range" id="hue-slider" min="0" max="65536" step="10" value="128">
+            </div>
+          </li>
+          <li class="edit">
+            <div class="labels">
+              <h3>Saturation</h3>
+            </div>
+            <div class="input-group">
+              <input class="edit-slider" type="range" id="sat-slider" min="0" max="255" step="1" value="128">
+            </div>
+          </li>
+          <li class="edit">
+            <div class="labels">
+              <h3>Brightness</h3>
+            </div>
+            <div class="input-group">
+              <input class="edit-slider" type="range" id="bri-slider" min="0" max="255" step="1" value="128">
+            </div>
+          </li>
+          <li class="edit">
+            <div class="labels">
+              <h3>Preview</h3>
+            </div>
+            <div class="splot big-splot" id="edit-preview"></div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
   <div id="FAB">
     <span class="fa fa-lightbulb-o"></span>
   </div>
 
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/non-hue-script.js"></script>
   <script type="text/javascript" src="js/hue-script.js"></script>
+  <script type="text/javascript" src="js/non-hue-script.js"></script>
+
 </body>
 
 </html>

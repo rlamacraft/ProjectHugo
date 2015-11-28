@@ -16,3 +16,14 @@
 @fab-large-size: 70px;
 @fab-small-pos: 37px;
 @fab-small-size: 63px;
+@size-splot: 35px;
+@size-splot-big: 4 * @size-splot;
+
+@transition-default: ~"all .3s ease";
+
+.transition( @effect: @transition-default ) {
+  -webkit-transition:   @effect;
+  -moz-transition:      @effect;
+  -ms-transition:       @effect;
+  transition:           @effect;
+}
