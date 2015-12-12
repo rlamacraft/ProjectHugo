@@ -60,6 +60,26 @@ html, body {
   border-bottom-color: @colour-base;
 }
 
+.tabPane {
+  opacity: 0.0;
+  .transition(@transition-tabs);
+  position: absolute;
+  width: 100%;
+}
+
+.tabPane.showTab {
+  opacity: 1.0;
+  transform: translateX(0%) !important;
+}
+
+.tabPane#scenes {
+  transform: translateX(-100%);
+}
+
+.tabPane#alarms {
+    transform: translateX(100%);
+}
+
 .list-pane {
   height: 100%;
   margin: 10px;
@@ -158,15 +178,6 @@ li.alarm h5 {
   font-size: 1em;
   color: @colour-font-secondary;
   font-family: @font-family;
-}
-
-section {
-  transition: all .5s ease;
-}
-
-#alarms {
-  opacity: 0;
-  display: none;
 }
 
 #FAB {

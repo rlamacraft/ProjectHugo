@@ -51,6 +51,25 @@ body {
   background-color: transparent;
   border-bottom-color: #f5f7f7;
 }
+.tabPane {
+  opacity: 0.0;
+  -webkit-transition: transform 0.6s ease, opacity 0.4s ease;
+  -moz-transition: transform 0.6s ease, opacity 0.4s ease;
+  -ms-transition: transform 0.6s ease, opacity 0.4s ease;
+  transition: transform 0.6s ease, opacity 0.4s ease;
+  position: absolute;
+  width: 100%;
+}
+.tabPane.showTab {
+  opacity: 1.0;
+  transform: translateX(0%) !important;
+}
+.tabPane#scenes {
+  transform: translateX(-100%);
+}
+.tabPane#alarms {
+  transform: translateX(100%);
+}
 .list-pane {
   height: 100%;
   margin: 10px;
@@ -142,13 +161,6 @@ li.alarm h5 {
   font-size: 1em;
   color: #8dafaa;
   font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
-}
-section {
-  transition: all .5s ease;
-}
-#alarms {
-  opacity: 0;
-  display: none;
 }
 #FAB {
   position: fixed;

@@ -1,5 +1,7 @@
 $(document).ready( function() {
 
+  changeTab("#scenes-tab");
+
   $('#scenes-tab').click(function() {
     changeTab(this);
   });
@@ -16,12 +18,15 @@ $(document).ready( function() {
 });
 
 function changeTab(alink) {
+  //update tab bar
   $(".tab").removeClass('active');
   $(alink).parent().addClass('active');
 
-  $('section').hide().css('opacity', '0.0');
+  //update tabs
+  $('.tabPane').removeClass('showTab')
   tab = $('#' + $(alink).attr('data-tab'));
-  tab.show().css('opacity', '1.0');
+  console.log(tab);
+  tab.addClass('showTab');
 }
 
 function editState() {
