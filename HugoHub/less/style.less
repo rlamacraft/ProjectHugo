@@ -199,13 +199,20 @@ section {
 }
 
 #edit-state-pane {
-  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
+  left: 0%;
   right: 0;
   background-color: @colour-base;
+  .transition();
+  transform: translateX(100%);
+  opacity: 0.0;
+}
+
+#edit-state-pane.show {
+  transform: translateX(0%);
+  opacity: 1.0;
 }
 
 #edit-state-pane li {

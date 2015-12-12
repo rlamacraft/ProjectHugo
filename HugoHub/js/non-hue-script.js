@@ -25,12 +25,12 @@ function changeTab(alink) {
 }
 
 function editState() {
-  $('#edit-state-pane').show('slow');
+  $('#edit-state-pane').addClass('show');
   correctSliders();
 }
 
 function closeEditState() {
-  $('#edit-state-pane').hide('slow');
+  $('#edit-state-pane').removeClass('show');
 }
 
 function saveEditState() {
