@@ -168,7 +168,7 @@ li.alarm h5 {
   right: 37px;
   width: 63px;
   height: 63px;
-  border-radius: 50%;
+  border-radius: 10px;
   box-shadow: 2px 2px 5px #ccc;
   background-color: #3caa9c;
   color: #f5f7f7;
@@ -188,7 +188,7 @@ li.alarm h5 {
   width: 100%;
   display: block;
   color: inherit;
-  padding-top: 12px;
+  padding-top: 15px;
 }
 #edit-state-pane {
   position: absolute;
