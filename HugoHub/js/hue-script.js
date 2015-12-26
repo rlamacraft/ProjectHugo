@@ -115,7 +115,7 @@ function correctSliders() {
 
 function saveEdits() {
   var hue = $('#hue-slider').val();
-  var sat = $('#sat-slider').attr('value');
-  var bri = $('#bri-slider').attr('value');
+  var sat = $('#sat-slider').val();
+  var bri = $('#bri-slider').val();
   setColor(url, username, defaultLight, hue, sat, bri);
 }
