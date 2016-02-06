@@ -14,6 +14,25 @@ function turnOffLamp(domain, username, lampNum) {
   updateFabButton(false);
 }
 
+function post_request(domain, username, url, data) {
+  jQuery.ajax({
+         type: "POST",
+         url: domain + '/' + username + '/' + url,
+         contentType: "application/json; charset=utf-8",
+         data: data,
+         dataType: "json",
+         success: function (data, status, jqXHR) {
+             // do something
+             console.log(data)
+         },
+         error: function (jqXHR, status) {
+             // error handler
+             console.log(status)
+         }
+   });
+}
+
+
 function put_request(domain, username, url, data) {
   jQuery.ajax({
          type: "PUT",
@@ -73,4 +92,8 @@ function HSLToHue(value, component) {
   } else {
     return(value/100*265)
   }
+}
+
+function createAlarm(domain, username, data ) {
+  post_request(domain, username, "schedules/", data);
 }

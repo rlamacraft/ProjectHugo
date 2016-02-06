@@ -60,6 +60,31 @@ html, body {
   border-bottom-color: @colour-base;
 }
 
+button.btn {
+  background-color: @colour-base;
+  color: @colour-accent;
+  font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
+  font-size: 1em;
+  padding: 0px 1em;
+  letter-spacing: 0.05em;
+  margin: 0px 5px;
+  transition: @transition-default;
+  z-index: 2;
+}
+
+button.btn:hover {
+  color: darken(@colour-accent, 10%);
+  opacity: 0.9;
+}
+
+.btn-group button.btn {
+  margin: 0;
+}
+
+.btn-group button.btn + button.btn {
+  border-left: 1px solid @colour-accent;
+}
+
 .tabPane {
   opacity: 0.0;
   .transition(@transition-tabs);
@@ -219,6 +244,7 @@ li.alarm h5 {
   .transition();
   transform: translateX(100%);
   opacity: 0.0;
+  z-index: 50;
 }
 
 #edit-state-pane.show {

@@ -14,6 +14,7 @@ $(document).ready( function() {
   $('#edit-state-close').click(closeEditState);
   $('#edit-state-save').click(saveEditState);
   $('.edit-slider').on('input', changingSlider);
+  $('#delayOff').click(delayOff);
 
 });
 

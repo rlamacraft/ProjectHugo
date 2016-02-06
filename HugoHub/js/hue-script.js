@@ -105,10 +105,11 @@ function renderAllAlarms(data) {
 }
 
 function correctSliders() {
-    get_request(url, username, "lights/" + defaultLight + "/", function( light ) {
-    $('#hue-slider').attr("value", light.state.hue);
-    $('#sat-slider').attr("value", light.state.sat);
-    $('#bri-slider').attr("value", light.state.bri);
+  get_request(url, username, "lights/" + defaultLight + "/", function( light ) {
+    console.log(light.state);
+    $('#hue-slider').val(light.state.hue);
+    $('#sat-slider').val(light.state.sat);
+    $('#bri-slider').val(light.state.bri);
     updatePreview(light.state.hue, light.state.sat, light.state.bri);
   })
 }
@@ -118,4 +119,40 @@ function saveEdits() {
   var sat = $('#sat-slider').val();
   var bri = $('#bri-slider').val();
   setColor(url, username, defaultLight, hue, sat, bri);
+}
+
+function delayOff() {
+  var date = new Date();
+  date.setSeconds(date.getSeconds() + 25);
+
+  var packTwoDigits = function(str) {
+    tmp = "00" + str;
+    return(tmp.slice(-2,tmp.length));
+  }
+  var month = packTwoDigits(date.getMonth() + 1);
+  var day = packTwoDigits(date.getDay());
+  var hour = packTwoDigits(date.getHours());
+  var minute = packTwoDigits(date.getMinutes());
+  var seconds = packTwoDigits(date.getSeconds());
+
+  var timestamp = date.getFullYear() + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + seconds;
+
+  createAlarm(
+    url,
+    username,
+    JSON.stringify({
+      "name": "tmp30",
+      "description" : "temporary alarm to turn off light in 30 seconds",
+      "command" : {
+        "address": "/api/" + username + "/lights/" + defaultLight + "/state",
+        "method": "PUT",
+        "body": {
+          "on" : false,
+          "transitiontime" : 50
+        }
+      },
+      "localtime" : timestamp,
+      "autodelete" : true
+    })
+  )
 }
