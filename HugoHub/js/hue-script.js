@@ -130,7 +130,7 @@ function delayOff() {
     return(tmp.slice(-2,tmp.length));
   }
   var month = packTwoDigits(date.getMonth() + 1);
-  var day = packTwoDigits(date.getDay());
+  var day = packTwoDigits(date.getDate());
   var hour = packTwoDigits(date.getHours());
   var minute = packTwoDigits(date.getMinutes());
   var seconds = packTwoDigits(date.getSeconds());
