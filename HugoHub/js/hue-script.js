@@ -51,9 +51,9 @@ function other_init() {
 
 function updateFabButton(state) {
   if(state) {
-    $('#FAB').css('background-color', '#F5F7F7').css('color', '#3CAA9C');
+    $('#FAB').css('background-color', '#F5F7F7').css('color', '#607D8B');
   } else {
-    $('#FAB').css('background-color', '#3CAA9C').css('color', '#F5F7F7');
+    $('#FAB').css('background-color', '#607D8B').css('color', '#F5F7F7');
   }
 }
 

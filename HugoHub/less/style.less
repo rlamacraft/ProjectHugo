@@ -20,6 +20,7 @@ html, body {
   top: 0;
   left: 0;
   right: 0;
+  padding-bottom: 10px;
 }
 
 .header h1 {
@@ -86,7 +87,7 @@ button.btn:hover {
 }
 
 .tabPane {
-  opacity: 0.0;
+  // opacity: 0.0;
   .transition(@transition-tabs);
   position: absolute;
   width: 100%;
@@ -98,7 +99,7 @@ button.btn:hover {
 }
 
 .tabPane#scenes {
-  transform: translateX(-100%);
+  // transform: translateX(-100%);
 }
 
 .tabPane#alarms {
@@ -205,21 +206,37 @@ li.alarm h5 {
   font-family: @font-family;
 }
 
-#FAB {
+#controls {
   position: fixed;
-  bottom: @fab-small-pos;
-  right: @fab-small-pos;
+  right: @fab-small-pos + 20;
+  bottom: @fab-small-pos + 20;
+  display: flex;
+  flex-direction: column;
+
+  @media(min-width:768px) {
+    right: @fab-large-pos + 20;
+    bottom: @fab-large-pos + 20;
+  }
+}
+
+.FAB {
+  font-family: @font-family;
+  font-weight: @font-weight-header;
+  margin: 10px;
+  // position: fixed;
+  // bottom: @fab-small-pos;
+  // right: @fab-small-pos;
   width: @fab-small-size;
   height: @fab-small-size;
   border-radius: 10px;
-  box-shadow: 2px 2px 5px #ccc;
+  // box-shadow: 2px 2px 5px #ccc;
   background-color: @colour-accent;
   color: @colour-base;
   cursor: pointer;
 
   @media(min-width:768px) {
-    bottom: @fab-large-pos;
-    right: @fab-large-pos;
+    // bottom: @fab-large-pos;
+    // right: @fab-large-pos;
     width: @fab-large-size;
     height: @fab-large-size;
   }
@@ -230,7 +247,11 @@ li.alarm h5 {
     width: 100%;
     display: block;
     color: inherit;
-    padding-top: 15px;
+    padding-top: 20px;
+  }
+
+  &#delayOff span {
+    padding-top: 10px;
   }
 }
 
@@ -299,5 +320,21 @@ li.alarm h5 {
 
   &:active::-moz-range-thumb {
     background: @colour-accent;
+  }
+}
+
+.dark-mode {
+  background-color: #546E7A;
+
+  li.scene {
+    border: none !important;
+
+    h3 {
+      color: #dee5e5;
+    }
+
+    button {
+      border: none;
+    }
   }
 }

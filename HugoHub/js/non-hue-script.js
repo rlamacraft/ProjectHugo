@@ -16,7 +16,23 @@ $(document).ready( function() {
   $('.edit-slider').on('input', changingSlider);
   $('#delayOff').click(delayOff);
 
+  darkMode();
 });
+
+function darkMode() {
+  currentTime = new Date();
+  hours = currentTime.getHours();
+  mins = currentTime.getMinutes();
+
+  hours = 22;
+
+  if(
+    (hours < 7 || (hours == 7 && minutes <= 30) ) ||
+    (hours > 21 || (hours == 21 && minutes >= 35) )
+  ) {
+    $("html").addClass("dark-mode");
+  }
+}
 
 function changeTab(alink) {
   //update tab bar
