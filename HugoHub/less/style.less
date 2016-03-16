@@ -2,11 +2,27 @@
 
 @import "variables.less";
 
+@keyframes pulse {
+    from {
+      opacity: 0.1;
+      width: 100px;
+      height: 100px;
+    }
+    to {
+      opacity: 0.0;
+      width: 1000px;
+      height: 1000px;
+      margin-left: -450px;
+      margin-top: -450px;
+    }
+}
+
 html, body {
   width: 100%;
   background-color: @colour-base;
   margin: 0;
   overflow-x: hidden;
+  background-color: #546E7A;
 }
 
 .container {
@@ -83,7 +99,7 @@ button.btn:hover {
 }
 
 .btn-group button.btn + button.btn {
-  border-left: 1px solid @colour-accent;
+  // border-left: 1px solid @colour-accent;
 }
 
 .tabPane {
@@ -129,6 +145,7 @@ li.scene, li.alarm, li.edit {
 
 li.scene {
   cursor: pointer;
+  border: none !important;
 }
 
 li.alarm .labels {
@@ -174,8 +191,8 @@ li.edit  h3 {
   margin: 0px 10px;
   vertical-align: top;
   font-size: 1.5em;
-  color: @colour-font-primary;
   font-family: @font-family;
+  color: #dee5e5;
 }
 
 li.scene h3 {
@@ -187,7 +204,6 @@ li.scene button {
   padding: 0;
   border: none;
   cursor: default;
-  border-left: 2px solid #f5f7f7;
   transition: all .5s ease;
 }
 
@@ -323,18 +339,14 @@ li.alarm h5 {
   }
 }
 
-.dark-mode {
-  background-color: #546E7A;
-
-  li.scene {
-    border: none !important;
-
-    h3 {
-      color: #dee5e5;
-    }
-
-    button {
-      border: none;
-    }
-  }
+.pulse {
+  background-color: #fff;
+  opacity: 0.2;
+  border-radius: 50%;
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  width: 100px;
+  height: 100px;
+  animation-duration: .5s;
 }

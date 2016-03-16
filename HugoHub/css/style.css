@@ -1,9 +1,24 @@
+@keyframes pulse {
+  from {
+    opacity: 0.1;
+    width: 100px;
+    height: 100px;
+  }
+  to {
+    opacity: 0.0;
+    width: 1000px;
+    height: 1000px;
+    margin-left: -450px;
+    margin-top: -450px;
+  }
+}
 html,
 body {
   width: 100%;
   background-color: #f5f7f7;
   margin: 0;
   overflow-x: hidden;
+  background-color: #546E7A;
 }
 .container {
   width: 100%;
@@ -70,9 +85,6 @@ button.btn:hover {
 .btn-group button.btn {
   margin: 0;
 }
-.btn-group button.btn + button.btn {
-  border-left: 1px solid #607d8b;
-}
 .tabPane {
   -webkit-transition: transform 0.6s ease, opacity 0.4s ease;
   -moz-transition: transform 0.6s ease, opacity 0.4s ease;
@@ -113,6 +125,7 @@ li.edit {
 }
 li.scene {
   cursor: pointer;
+  border: none !important;
 }
 li.alarm .labels {
   display: inline-block;
@@ -152,8 +165,8 @@ li.edit h3 {
   margin: 0px 10px;
   vertical-align: top;
   font-size: 1.5em;
-  color: #777777;
   font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
+  color: #dee5e5;
 }
 li.scene h3 {
   margin-top: 7px;
@@ -163,7 +176,6 @@ li.scene button {
   padding: 0;
   border: none;
   cursor: default;
-  border-left: 2px solid #f5f7f7;
   transition: all .5s ease;
 }
 li.scene button:active,
@@ -294,15 +306,14 @@ li.alarm h5 {
 #edit-state-pane .input-group input.edit-slider:active::-moz-range-thumb {
   background: #607d8b;
 }
-.dark-mode {
-  background-color: #546E7A;
-}
-.dark-mode li.scene {
-  border: none !important;
-}
-.dark-mode li.scene h3 {
-  color: #dee5e5;
-}
-.dark-mode li.scene button {
-  border: none;
+.pulse {
+  background-color: #fff;
+  opacity: 0.2;
+  border-radius: 50%;
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  width: 100px;
+  height: 100px;
+  animation-duration: .5s;
 }

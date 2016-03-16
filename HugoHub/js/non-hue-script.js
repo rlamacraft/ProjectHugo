@@ -16,23 +16,21 @@ $(document).ready( function() {
   $('.edit-slider').on('input', changingSlider);
   $('#delayOff').click(delayOff);
 
-  darkMode();
+  $("body").click(function(e) {
+    console.log(e);
+    $(".pulse").css({
+      left : e.clientX - 50,
+      top: e.clientY - 50,
+      "animation-name": "pulse"
+    });
+    setTimeout(function() {
+      $(".pulse").css({
+        opacity: 0,
+        "animation-name": ""
+      });
+    }, 300);
+  });
 });
-
-function darkMode() {
-  currentTime = new Date();
-  hours = currentTime.getHours();
-  mins = currentTime.getMinutes();
-
-  hours = 22;
-
-  if(
-    (hours < 7 || (hours == 7 && minutes <= 30) ) ||
-    (hours > 21 || (hours == 21 && minutes >= 35) )
-  ) {
-    $("html").addClass("dark-mode");
-  }
-}
 
 function changeTab(alink) {
   //update tab bar
