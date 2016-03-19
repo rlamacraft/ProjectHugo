@@ -14,6 +14,7 @@ $(document).ready( function() {
  });
 
  $('.scene').click(setScene);
+ $("#accept").click(saveEdits);
 });
 
 function getConfigData() {
@@ -46,14 +47,18 @@ function other_init() {
   });
 
   setSplotColours();
-  getAllAlarms();
+  correctSliders();
+
+  // getAllAlarms();
 }
 
 function updateFabButton(state) {
   if(state) {
-    $('#FAB').css('background-color', '#F5F7F7').css('color', '#607D8B');
+    $('#FAB').css('background-color', '#F5F7F7').css('color', '#607D8B').html("<span>ON</span>");
+    // $('#FAB').css('background-color', '#F5F7F7').css('color', '#607D8B');
   } else {
-    $('#FAB').css('background-color', '#607D8B').css('color', '#F5F7F7');
+    $('#FAB').css('background-color', '#607D8B').css('color', '#F5F7F7').html("<span>OFF</span>");
+    // $('#FAB').css('background-color', '#607D8B').css('color', '#F5F7F7');
   }
 }
 
@@ -63,6 +68,7 @@ function setScene() {
   sat = tappedScene.data('sat');
   bri = tappedScene.data('bri');
   setColor(url, username, defaultLight, hue, sat, bri);
+  updatePreview(hue, sat, bri);
 }
 
 function setSplotColours() {
@@ -74,34 +80,6 @@ function setSplotColours() {
     bri = Math.round(HueToHSL(eachScene.data('bri'), 'bri'));
     $(this).css("background-color", "hsl(" + hue + "," + sat + "%," + bri + "%)");
   });
-}
-
-function getAllAlarms() {
-  get_request(url, username, "schedules", renderAllAlarms);
-}
-
-function renderAllAlarms(data) {
-  for (var key in data) {
-    if (data.hasOwnProperty(key)) {
-      colours = data[key].command.body;
-      if(colours.on === false) {
-        hue = "0";
-        sat = "100";
-        bri = "0";
-      } else {
-        hue = Math.round(HueToHSL(colours.hue, 'hue'));
-        sat = Math.round(HueToHSL(colours.sat, 'sat'));
-        bri = Math.round(HueToHSL(colours.bri, 'bri'));
-      }
-      splotColour = 'hsl(' + hue + ',' + sat + '%,' + bri + '%)';
-      splot = '<div class="splot" style="background-color:' + splotColour + '"></div>';
-      nameLabel = '<h3>' + data[key].name + '</h3>';
-      timeLabel = '<h5>' + data[key].time + '</h5>';
-      labels = '<div class="labels">' + nameLabel + timeLabel + '</div>';
-
-      $('#alarms-list').append('<li class="alarm" title="' + data[key].description + '">' + splot + labels + '</li>');
-    }
-  }
 }
 
 function correctSliders() {

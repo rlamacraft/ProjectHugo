@@ -78,11 +78,18 @@ function get_all_scenes(domain, username, success) {
   return(get_request(domain, username, get_scenes_url, success))
 }
 
-function HueToHSL(value, component) {
-  if(component == "hue") {
-    return(value/(265*265)*360)
+function HueToHSL(value, component, rounded) {
+  if(typeof(rounded) === "undefined")
+    rounded = false;
+  if(component === "hue") {
+    ret = value/(265*265)*360
   } else {
-    return(value/265*100)
+    ret = value/265*100
+  }
+  if(rounded)
+    return(Math.round(ret))
+  else {
+    return(ret);
   }
 }
 

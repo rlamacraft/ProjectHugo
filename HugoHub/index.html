@@ -12,6 +12,7 @@
   <link href="css/style.css" rel="stylesheet">
 
   <link href="http://fonts.googleapis.com/css?family=Roboto:300,500,700" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
@@ -32,18 +33,12 @@
 </head>
 
 <body>
-  <header>
+  <header id="header">
     <div class="row">
       <div class="col-xs-12">
-        <div class="header">
-          <div class="row">
-            <div class="col-xs-12">
-              <h1>
-                Hugo Hub
-              </h1>
-            </div>
-          </div>
-        </div>
+        <h1>
+          Hugo Hub
+        </h1>
       </div>
     </div>
   </header>
@@ -93,12 +88,6 @@
                             <div class="labels"><h3>City Road</h3></div>
                           </button>
                         </li>
-                        <li class="scene" data-hue="5267" data-sat="254" data-bri="170">
-                          <button>
-                            <div class="splot"></div>
-                            <div class="labels"><h3>True Red</h3></div>
-                          </button>
-                        </li>
                         <li class="scene" data-hue="40574" data-sat="61" data-bri="101">
                           <button>
                             <div class="splot"></div>
@@ -113,22 +102,28 @@
         </div>
       </div>
     </div>
+    <div class="footer">
+      <h1 class="icon big" id="closeDrawer"><span class="fa fa-chevron-down"></span></h1>
+    </div>
+    <div id="slant">
+
+    </div>
+    <div id="controls">
+      <div class="FAB" id="delayOff">
+        <span>30</span>
+      </div>
+      <div class="FAB" id="FAB">
+        <span>ON</span>
+      </div>
+      <div class="FAB" id="accept">
+        <span class="fa fa-check"></span>
+      </div>
+    </div>
   </section>
 
   <div id="edit-state-pane">
     <div class="row">
       <div class="col-xs-12">
-        <div class="header">
-          <div class="row">
-            <div class="col-xs-12">
-              <h1>
-                <span id="edit-state-close" class="fa fa-times pull-right"></span>
-                <span id="edit-state-save" class="fa fa-check pull-right"></span>
-                State Editor
-              </h1>
-            </div>
-          </div>
-        </div>
         <ul>
           <li class="edit">
             <div class="labels">
@@ -154,35 +149,23 @@
               <input class="edit-slider" type="range" id="bri-slider" min="0" max="255" step="1" value="128">
             </div>
           </li>
-          <li class="edit">
-            <div class="labels">
-              <h3>Preview</h3>
-            </div>
-            <div class="splot big-splot" id="edit-preview"></div>
-          </li>
         </ul>
 
       </div>
     </div>
+    <div class="footer">
+      <h1 class="icon big" id="openDrawer"><span class="fa fa-chevron-up"></span></h1>
+    </div>
   </div>
 
-  <div id="controls">
-    <div class="FAB" id="delayOff">
-      <span>30</span>
-    </div>
-    <div class="FAB" id="edit-icon">
-      <span class="fa fa-edit"></span>
-    </div>
-    <div class="FAB" id="FAB">
-      <span class="fa fa-lightbulb-o"></span>
-    </div>
-  </div>
+
 
   <div class="pulse">
   </div>
 
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/hue-utils.js"></script>
   <script type="text/javascript" src="js/hue-script.js"></script>
   <script type="text/javascript" src="js/non-hue-script.js"></script>
 

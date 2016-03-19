@@ -15,60 +15,144 @@
 html,
 body {
   width: 100%;
-  background-color: #f5f7f7;
+  background-color: #e5e5e5;
   margin: 0;
   overflow-x: hidden;
-  background-color: #546E7A;
 }
 .container {
   width: 100%;
   padding: 0;
   margin: 0;
 }
-.header {
+.footer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+}
+.footer h1 {
+  opacity: 1.0;
+}
+.footer h1.hide {
+  opacity: 0.0;
+}
+h1 {
+  color: #e5e5e5;
+  font-weight: /*300*/ 200;
+  margin: 0;
+  padding: 10px;
+  font-size: 2em;
+  font-family: "Lato";
+  opacity: 0.8;
+}
+h1 .big {
+  font-size: 2em;
+}
+#header {
+  z-index: 2000;
   background-color: #607d8b;
   top: 0;
   left: 0;
   right: 0;
   padding-bottom: 10px;
+  position: absolute;
+  height: 50px;
 }
-.header h1 {
-  color: #f5f7f7;
-  font-weight: 300;
-  margin: 0;
-  padding: 10px;
-  font-size: 2em;
-  font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
+#scenes {
+  height: 75%;
+  position: absolute;
+  z-index: 1000;
+  background-color: #546e7a;
+  margin-top: 50px;
+  box-shadow: 0px 5px 5px #555;
+  -webkit-transition: all 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+  -moz-transition: all 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+  -ms-transition: all 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: all 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+  top: 0%;
 }
-.nav-justified > li {
-  display: table-cell;
-  width: 1%;
+#scenes .container {
+  overflow: hidden;
+  height: 100%;
+  position: absolute;
+  z-index: 850;
 }
-.nav-justified > li > a {
-  margin: 0;
+#scenes .footer {
+  z-index: 850;
+  flex-direction: row-reverse;
+  bottom: -50px;
 }
-.nav-pills > li > a {
-  border-radius: 0;
-  color: #dee5e5;
-  font-weight: 300;
-  font-size: 1.5em;
-  border-bottom: 6px solid transparent;
-  transition: all .5s ease;
-  font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
+#scenes .footer h1 {
+  opacity: 0.0;
 }
-.nav-pills > li > a:hover,
-.nav-pills > li > a:focus {
-  background-color: transparent;
-  color: #eff2f2;
+#scenes #slant {
+  background-color: #546e7a;
+  width: 120%;
+  height: 100px;
+  bottom: -40px;
+  left: -10px;
+  position: absolute;
+  transform: rotateZ(5deg);
+  box-shadow: 0px 5px 5px #555;
+  z-index: 750;
 }
-.nav-pills > li.active > a,
-.nav-pills > li.active > a:focus,
-.nav-pills > li.active > a:hover {
-  background-color: transparent;
-  border-bottom-color: #f5f7f7;
+#edit-state-pane {
+  z-index: 500;
+  top: 0;
+  bottom: 0;
+  left: 0%;
+  right: 0;
+  position: absolute;
+  padding-top: 100px;
+  background-color: #546e7a;
+}
+#edit-state-pane ul {
+  padding: 0;
+}
+#edit-state-pane .footer h1 {
+  flex-grow: 1;
+}
+#controls {
+  z-index: 1500;
+  position: fixed;
+  right: 5px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#controls #accept {
+  margin-bottom: 15px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+  transform: translateX(200px);
+}
+body.editOpen #scenes {
+  top: -72%;
+  -webkit-transition: all 1s cubic-bezier(0.62, 0.01, 0.53, 1.31);
+  -moz-transition: all 1s cubic-bezier(0.62, 0.01, 0.53, 1.31);
+  -ms-transition: all 1s cubic-bezier(0.62, 0.01, 0.53, 1.31);
+  transition: all 1s cubic-bezier(0.62, 0.01, 0.53, 1.31);
+}
+body.editOpen #scenes .footer h1 {
+  opacity: 0.7;
+}
+body.editOpen #edit-state-pane .footer h1 {
+  opacity: 0.0;
+}
+body.editOpen #controls #accept {
+  transform: translateX(0px);
+  display: block;
+}
+.footer h1.big {
+  font-size: 3em;
+}
+.footer h1.icon {
+  opacity: 0.7;
 }
 button.btn {
-  background-color: #f5f7f7;
+  background-color: #e5e5e5;
   color: #607d8b;
   font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
   font-size: 1em;
@@ -130,15 +214,10 @@ li.scene {
 li.alarm .labels {
   display: inline-block;
 }
-li.scene + li.scene,
-li.alarm + li.alarm,
-li.edit + li.edit {
-  border-top: 1px solid #ccc;
-}
 li.scene .splot,
 li.alarm .splot,
 li.edit .splot {
-  border-radius: 40%;
+  border-radius: 35%;
   width: 35px;
   height: 35px;
   display: inline-block;
@@ -160,12 +239,12 @@ li.edit .labels {
 li.scene h3,
 li.alarm h3,
 li.edit h3 {
-  font-weight: 300;
+  font-weight: /*300*/ 200;
   display: block;
   margin: 0px 10px;
   vertical-align: top;
   font-size: 1.5em;
-  font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
+  font-family: "Lato";
   color: #dee5e5;
 }
 li.scene h3 {
@@ -181,7 +260,6 @@ li.scene button {
 li.scene button:active,
 li.scene button:focus {
   outline: none;
-  border-left: 2px solid #3caa9c;
 }
 li.alarm h5 {
   font-weight: 500;
@@ -190,37 +268,20 @@ li.alarm h5 {
   vertical-align: top;
   font-size: 1em;
   color: #8dafaa;
-  font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
-}
-#controls {
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
-  display: flex;
-  flex-direction: column;
-}
-@media (min-width: 768px) {
-  #controls {
-    right: 95px;
-    bottom: 95px;
-  }
+  font-family: "Lato";
 }
 .FAB {
-  font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
-  font-weight: 300;
+  font-family: "Lato";
+  font-weight: /*300*/ 200;
   margin: 10px;
-  width: 75px;
+  width: 85px;
   height: 75px;
-  border-radius: 10px;
+  border-radius: 10%;
   background-color: #607d8b;
-  color: #f5f7f7;
+  color: #e5e5e5;
   cursor: pointer;
-}
-@media (min-width: 768px) {
-  .FAB {
-    width: 75px;
-    height: 75px;
-  }
+  border: 2px solid #ddd;
+  box-shadow: 2px 2px 3px rgba(100,100,100,0.8);
 }
 .FAB span {
   font-size: 2.7em;
@@ -230,31 +291,13 @@ li.alarm h5 {
   color: inherit;
   padding-top: 20px;
 }
-.FAB#delayOff span {
-  padding-top: 10px;
-}
-#edit-state-pane {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0%;
-  right: 0;
-  background-color: #f5f7f7;
-  -webkit-transition: all .5s ease;
-  -moz-transition: all .5s ease;
-  -ms-transition: all .5s ease;
-  transition: all .5s ease;
-  transform: translateX(100%);
-  opacity: 0.0;
-  z-index: 50;
-}
-#edit-state-pane.show {
-  transform: translateX(0%);
-  opacity: 1.0;
+.FAB span {
+  line-height: 0.85;
 }
 #edit-state-pane li {
   margin-bottom: 30px;
   margin-top: 10px;
+  width: calc(100% - 110px);
 }
 #edit-state-pane .input-group {
   margin: 10px;
@@ -308,7 +351,7 @@ li.alarm h5 {
 }
 .pulse {
   background-color: #fff;
-  opacity: 0.2;
+  opacity: 0;
   border-radius: 50%;
   position: absolute;
   left: 100px;
@@ -316,4 +359,5 @@ li.alarm h5 {
   width: 100px;
   height: 100px;
   animation-duration: .5s;
+  z-index: 2000;
 }

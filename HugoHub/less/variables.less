@@ -1,23 +1,30 @@
 // colours
-@colour-base: #F5F7F7;
+@colour-base: #E5E5E5;
 @colour-accent: #607D8B;
 @colour-font-primary: #777777;
+@colour-grey: #546E7A;
 @colour-font-secondary: #8dafaa;
 @colour-tab-darken: darken(@colour-base, 8%);
 @colour-tab-darken-hover: darken(@colour-base, 2%);
 
 // fonts
-@font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
-@font-weight-header: 300;
+// @font-family: 'San-Fancisco', Roboto, Helvetica, Sans-serif;
+@font-family: "Lato";
+@font-weight-header: /*300*/200;
 @font-weight-subheading: 500;
 
 // sizes
-@fab-large-pos: 75px;
+@fab-large-pos: @fab-small-pos;
 @fab-large-size: 75px;
-@fab-small-pos: 10px;
+@fab-small-pos: 5px;
 @fab-small-size: 75px;
 @size-splot: 35px;
 @size-splot-big: 4 * @size-splot;
+
+@size-header-height: 50px;
+
+@control-border-radius: 10%;
+@splot-border-radius: 35%;
 
 @transition-default: ~"all .5s ease";
 @transition-tabs: ~"transform 0.6s ease, opacity 0.4s ease";
@@ -28,3 +35,5 @@
   -ms-transition:       @effect;
   transition:           @effect;
 }
+
+@border: ~"2px solid #ddd";

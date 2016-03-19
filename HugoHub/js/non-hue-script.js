@@ -1,23 +1,16 @@
 $(document).ready( function() {
 
-  changeTab("#scenes-tab");
-
-  $('#scenes-tab').click(function() {
-    changeTab(this);
-  });
-
-  $('#alarms-tab').click(function() {
-    changeTab(this);
-  });
-
-  $('#edit-icon').click(editState);
-  $('#edit-state-close').click(closeEditState);
-  $('#edit-state-save').click(saveEditState);
   $('.edit-slider').on('input', changingSlider);
   $('#delayOff').click(delayOff);
 
+  $("#openDrawer").click(function() {
+    $("body").addClass("editOpen");
+  });
+  $("#closeDrawer").click(function() {
+    $("body").removeClass("editOpen");
+  });
+
   $("body").click(function(e) {
-    console.log(e);
     $(".pulse").css({
       left : e.clientX - 50,
       top: e.clientY - 50,
@@ -30,7 +23,16 @@ $(document).ready( function() {
       });
     }, 300);
   });
+
+  $(window).resize(updateSlant);
+  updateSlant();
 });
+
+function updateSlant() {
+  HEIGHT_OF_SLANT = 45;
+  slantAngle = Math.atan(HEIGHT_OF_SLANT / $(window).width());
+  $("#scenes #slant").css("transform", "rotateZ(" + slantAngle + "rad)")
+}
 
 function changeTab(alink) {
   //update tab bar
@@ -45,23 +47,14 @@ function changeTab(alink) {
 }
 
 function editState() {
-  $('#edit-state-pane').addClass('show');
   correctSliders();
 }
 
-function closeEditState() {
-  $('#edit-state-pane').removeClass('show');
-}
-
-function saveEditState() {
-  closeEditState();
-  saveEdits();
-}
-
 function changingSlider() {
-updatePreview($('#hue-slider').val(), $('#sat-slider').val(), $('#bri-slider').val() );
+  updatePreview($('#hue-slider').val(), $('#sat-slider').val(), $('#bri-slider').val() );
 }
 
 function updatePreview(hue, sat, bri) {
-  $('#edit-preview').css("background-color", "hsl(" + Math.round(HueToHSL(hue, 'hue')) + "," + Math.round(HueToHSL(sat, 'sat')) + "%," + Math.round(HueToHSL(bri, 'bri')) + "%)" );
+  $('#edit-state-pane').css("background-color", "hsl(" + Math.round(HueToHSL(hue, 'hue')) + "," + Math.round(HueToHSL(sat, 'sat')) + "%," + Math.round(HueToHSL(bri, 'bri')) + "%)" );
+  $('#statusLabel').html("hsl(" + Math.round(HueToHSL(hue, 'hue')) + "," + Math.round(HueToHSL(sat, 'sat')) + "%," + Math.round(HueToHSL(bri, 'bri')) + "%)");
 }

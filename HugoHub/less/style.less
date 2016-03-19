@@ -22,7 +22,6 @@ html, body {
   background-color: @colour-base;
   margin: 0;
   overflow-x: hidden;
-  background-color: #546E7A;
 }
 
 .container {
@@ -31,52 +30,162 @@ html, body {
     margin: 0;
 }
 
-.header {
-  background-color: @colour-accent;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding-bottom: 10px;
+.footer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+
+  h1 {
+    opacity: 1.0;
+
+    &.hide {
+      opacity: 0.0;
+    }
+  }
 }
 
-.header h1 {
+h1 {
   color: @colour-base;
   font-weight: @font-weight-header;
   margin: 0;
   padding: 10px;
   font-size: 2em;
   font-family: @font-family;
+  opacity: 0.8;
+
+  .big {
+    font-size: 2em;
+  }
 }
 
-.nav-justified>li {
-  display: table-cell;
-  width: 1%;
+#header {
+  z-index: 2000;
+  background-color: @colour-accent;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 10px;
+  position: absolute;
+  height: @size-header-height;
 }
 
-.nav-justified>li>a {
-  margin: 0;
+#scenes {
+  height: 75%;
+  position: absolute;
+  z-index: 1000;
+  background-color: @colour-grey;
+  margin-top: @size-header-height;
+  box-shadow: 0px 5px 5px #555;
+  .transition(~"all 1s cubic-bezier(0.22, 0.61, 0.36, 1)");
+  top: 0%;
+
+  .container {
+    overflow: hidden;
+    height: 100%;
+    position: absolute;
+    z-index: 850;
+  }
+
+  .footer {
+      z-index: 850;
+      flex-direction: row-reverse;
+      bottom: -50px;
+
+      h1 {
+        opacity: 0.0;
+      }
+  }
+
+  #slant {
+    background-color: @colour-grey;
+    width: 120%;
+    height: 100px;
+    bottom: -40px;
+    left: -10px;
+    position: absolute;
+    transform: rotateZ(5deg);
+    box-shadow: 0px 5px 5px #555;
+    z-index: 750;
+  }
 }
 
-.nav-pills>li>a {
-    border-radius: 0;
-    color: @colour-tab-darken;
-    font-weight: 300;
-    font-size: 1.5em;
-    border-bottom: 6px solid transparent;
-    transition: all .5s ease;
-    font-family: @font-family;
+#edit-state-pane {
+  z-index: 500;
+  top: 0;
+  bottom: 0;
+  left: 0%;
+  right: 0;
+  position: absolute;
+  padding-top: 100px;
+  background-color: @colour-grey;
+
+  ul {
+    padding: 0;
+  }
+
+  .footer {
+    h1 {
+      flex-grow: 1;
+    }
+  }
 }
 
-.nav-pills>li>a:hover, .nav-pills>li>a:focus {
-  background-color: transparent;
-  color: @colour-tab-darken-hover;
+#controls {
+  z-index: 1500;
+  position: fixed;
+  right: @fab-small-pos;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+
+  #accept {
+    margin-bottom: 15px;
+    .transition(~"all 1s ease");
+    transform: translateX(200px);
+  }
 }
 
-.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
-  background-color: transparent;
-  border-bottom-color: @colour-base;
+body.editOpen {
+  #scenes {
+    top: -72%;
+    .transition(~"all 1s cubic-bezier(0.62, 0.01, 0.53, 1.31)");
+
+    .footer {
+      h1 {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  #edit-state-pane {
+    .footer {
+      h1 {
+        opacity: 0.0;
+      }
+    }
+  }
+
+  #controls {
+    #accept {
+      transform: translateX(0px);
+      display: block;
+    }
+  }
 }
 
+.footer {
+  h1 {
+    &.big {
+      font-size: 3em;
+    }
+    &.icon {
+      opacity: 0.7;
+    }
+  }
+}
+
+// BUTTONS
 button.btn {
   background-color: @colour-base;
   color: @colour-accent;
@@ -98,12 +207,7 @@ button.btn:hover {
   margin: 0;
 }
 
-.btn-group button.btn + button.btn {
-  // border-left: 1px solid @colour-accent;
-}
-
 .tabPane {
-  // opacity: 0.0;
   .transition(@transition-tabs);
   position: absolute;
   width: 100%;
@@ -112,10 +216,6 @@ button.btn:hover {
 .tabPane.showTab {
   opacity: 1.0;
   transform: translateX(0%) !important;
-}
-
-.tabPane#scenes {
-  // transform: translateX(-100%);
 }
 
 .tabPane#alarms {
@@ -152,16 +252,10 @@ li.alarm .labels {
   display: inline-block;
 }
 
-li.scene + li.scene,
-li.alarm + li.alarm,
-li.edit  + li.edit {
-  border-top: 1px solid #ccc;
-}
-
 li.scene .splot,
 li.alarm .splot,
 li.edit  .splot {
-  border-radius: 40%;
+  border-radius: @splot-border-radius;
   width: @size-splot;
   height: @size-splot;
   display: inline-block;
@@ -209,7 +303,6 @@ li.scene button {
 
 li.scene button:active, li.scene button:focus {
   outline: none;
-  border-left: 2px solid #3caa9c;
 }
 
 li.alarm h5 {
@@ -222,40 +315,23 @@ li.alarm h5 {
   font-family: @font-family;
 }
 
-#controls {
-  position: fixed;
-  right: @fab-small-pos + 20;
-  bottom: @fab-small-pos + 20;
-  display: flex;
-  flex-direction: column;
-
-  @media(min-width:768px) {
-    right: @fab-large-pos + 20;
-    bottom: @fab-large-pos + 20;
-  }
-}
-
 .FAB {
   font-family: @font-family;
   font-weight: @font-weight-header;
   margin: 10px;
-  // position: fixed;
-  // bottom: @fab-small-pos;
-  // right: @fab-small-pos;
-  width: @fab-small-size;
+  width: @fab-small-size + 10;
   height: @fab-small-size;
-  border-radius: 10px;
-  // box-shadow: 2px 2px 5px #ccc;
+  border-radius: @control-border-radius;
   background-color: @colour-accent;
   color: @colour-base;
   cursor: pointer;
+  border: @border;
+  box-shadow: ~"2px 2px 3px rgba(100,100,100,0.8)";
 
-  @media(min-width:768px) {
-    // bottom: @fab-large-pos;
-    // right: @fab-large-pos;
-    width: @fab-large-size;
-    height: @fab-large-size;
-  }
+  // @media(min-width:768px) {
+  //   width: @fab-large-size;
+  //   height: @fab-large-size;
+  // }
 
   span {
     font-size: 2.7em;
@@ -266,32 +342,15 @@ li.alarm h5 {
     padding-top: 20px;
   }
 
-  &#delayOff span {
-    padding-top: 10px;
+  span {
+    line-height: 0.85;
   }
-}
-
-#edit-state-pane {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0%;
-  right: 0;
-  background-color: @colour-base;
-  .transition();
-  transform: translateX(100%);
-  opacity: 0.0;
-  z-index: 50;
-}
-
-#edit-state-pane.show {
-  transform: translateX(0%);
-  opacity: 1.0;
 }
 
 #edit-state-pane li {
   margin-bottom: 30px;
   margin-top: 10px;
+  width: ~"calc(100% - 110px)";
 }
 
 #edit-state-pane .input-group {
@@ -341,7 +400,7 @@ li.alarm h5 {
 
 .pulse {
   background-color: #fff;
-  opacity: 0.2;
+  opacity: 0;
   border-radius: 50%;
   position: absolute;
   left: 100px;
@@ -349,4 +408,5 @@ li.alarm h5 {
   width: 100px;
   height: 100px;
   animation-duration: .5s;
+  z-index: 2000;
 }
