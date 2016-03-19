@@ -38,7 +38,7 @@ body {
 }
 h1 {
   color: #e5e5e5;
-  font-weight: /*300*/ 200;
+  font-weight: 300;
   margin: 0;
   padding: 10px;
   font-size: 2em;
@@ -239,7 +239,7 @@ li.edit .labels {
 li.scene h3,
 li.alarm h3,
 li.edit h3 {
-  font-weight: /*300*/ 200;
+  font-weight: 300;
   display: block;
   margin: 0px 10px;
   vertical-align: top;
@@ -272,7 +272,7 @@ li.alarm h5 {
 }
 .FAB {
   font-family: "Lato";
-  font-weight: /*300*/ 200;
+  font-weight: 300;
   margin: 10px;
   width: 85px;
   height: 75px;
