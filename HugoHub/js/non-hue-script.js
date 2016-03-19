@@ -14,12 +14,14 @@ $(document).ready( function() {
     $(".pulse").css({
       left : e.clientX - 50,
       top: e.clientY - 50,
+      display: "block",
       "animation-name": "pulse"
     });
     setTimeout(function() {
       $(".pulse").css({
         opacity: 0,
-        "animation-name": ""
+        "animation-name": "",
+        display: "none"
       });
     }, 300);
   });
