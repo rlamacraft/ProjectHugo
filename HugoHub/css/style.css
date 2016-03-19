@@ -306,7 +306,7 @@ li.alarm h5 {
 #edit-state-pane .input-group input.edit-slider {
   -webkit-appearance: none;
   height: 3px;
-  background-color: #777777;
+  background-color: #e5e5e5;
   outline: none;
 }
 #edit-state-pane .input-group input.edit-slider::-webkit-slider-thumb {
