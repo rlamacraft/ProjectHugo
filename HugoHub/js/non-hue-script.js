@@ -10,6 +10,20 @@ $(document).ready( function() {
     $("body").removeClass("editOpen");
   });
 
+  scenesPanel = document.getElementById('scenes');
+  var scenesPanelHammer = new Hammer(scenesPanel, {});
+  scenesPanelHammer.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+  scenesPanelHammer.on('swipeup', function(ev) {
+      $("body").addClass("editOpen");
+  });
+
+  editPanel = document.getElementById('edit-state-pane');
+  var editPanelHammer = new Hammer(editPanel, {});
+  editPanelHammer.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+  editPanelHammer.on('swipedown', function(ev) {
+      $("body").removeClass("editOpen");
+  });
+
   $("body").click(function(e) {
     $(".pulse").css({
       left : e.clientX - 50,
