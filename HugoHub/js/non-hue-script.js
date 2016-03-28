@@ -42,6 +42,17 @@ $(document).ready( function() {
 
   $(window).resize(updateSlant);
   updateSlant();
+
+  $("#delayOff").click(function() {
+    $("#delayOff").find(".thirty-div .colour").css("animation-name", "thirty-rotate").show();
+    setTimeout(function() {
+      $("#delayOff").find(".thirty-div#left .colour").css("opacity", "0.0");
+    }, (25*1000))
+    setTimeout(function() {
+      $("#delayOff").find(".thirty-div .colour").css("animation-name", "none").hide();
+      $("#delayOff").find(".thirty-div#left .colour").css("opacity", "1.0");
+    }, (30*1000));
+  })
 });
 
 function updateSlant() {
